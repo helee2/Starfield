@@ -1,26 +1,60 @@
+Particle[] parts;
 //your code here
 void setup()
 {
-	//your code here
+  size(500,500);
+  parts = new Particle[1];
+  //your code here
 }
 void draw()
 {
-	//your code here
+  //your code here
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
-	//your code here
+  double Parx,Pary,ParSpeed,ParAngle;
+  int ParColor;
+  NormalParticle()
+  {
+    Parx = 250;
+    Pary = 250;
+    ParSpeed = (Math.random() * 10);
+    ParAngle = (Math.random() * (2*Math.PI));
+    ParColor = color((int)(Math.random() * 255),(int)(Math.random() * 255),(int)(Math.random() * 255));
+  }
+  void move()
+  {
+    Parx = 250 + Math.cos(ParAngle) * ParSpeed;
+    Pary = 250 + Math.sin(ParAngle) * ParSpeed;
+  }
+  void show()
+  {
+    fill(ParColor);
+    ellipse((float)Parx,(float)Pary,20,20);
+  }
+  //your code here
 }
 interface Particle
 {
-	//your code here
+  public void move();
+  public void show();
+  //your code here
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
-	//your code here
+  public void move()
+  {
+  }
+  public void show()
+  {
+  }
+  //your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle //uses inheritance
 {
-	//your code here
+  void show()
+  {
+  }
+  //your code here
 }
 
